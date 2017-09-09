@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/srl"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/srl"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ListView
+        android:id="@+id/list_view"
+        android:dividerHeight="30dip"
+        android:divider="#00000000"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-            <LinearLayout
-                android:id="@+id/list_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-            </LinearLayout>
-
-
-
-    </ScrollView>
+    </ListView>
 
 
 </android.support.v4.widget.SwipeRefreshLayout>

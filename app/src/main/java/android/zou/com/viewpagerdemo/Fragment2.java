@@ -85,7 +85,7 @@ public class Fragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.pager2,container,false);
+        View view = inflater.inflate(R.layout.pager2,container,false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         layoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
 /*
@@ -135,19 +135,19 @@ public class Fragment2 extends Fragment {
         });
         return view;
     }
-   //发送请求
+    //发送请求
     private void requetJokeImg(){
         String url = "http://api.laifudao.com/open/tupian.json";
         HttpUtil.sendOkHttpRequest(url, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getContext(),"获取信息失败",Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(),"获取信息失败",Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {

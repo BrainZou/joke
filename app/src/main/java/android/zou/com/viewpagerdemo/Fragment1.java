@@ -1,8 +1,10 @@
 package android.zou.com.viewpagerdemo;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,7 +49,7 @@ public class Fragment1 extends Fragment {
     private List<Joke> jokelist = new ArrayList<Joke>();
     private SwipeRefreshLayout srl;
     private boolean handler;
-    private LinearLayout list_view;
+    private View view;
 
 
 
@@ -84,6 +88,7 @@ public class Fragment1 extends Fragment {
     }
 
     private void showJokeInfo(Jokes jokes) {
+        /*
         for(Joke joke : jokes.jokelist){
             View view = LayoutInflater.from(getContext()).inflate(R.layout.joke_item,list_view,false);
             TextView content = (TextView) view.findViewById(R.id.joke_content);
@@ -92,22 +97,21 @@ public class Fragment1 extends Fragment {
             title.setText(joke.getTitle());
             list_view.addView(view);
             // init();
-        }
+        }*/
+        JokeAdapter adapter = new JokeAdapter(getContext(),R.layout.joke_item,jokes.jokelist);
+        ListView list_view = (ListView) view.findViewById(R.id.list_view);
+        list_view.setAdapter(adapter);
         list_view.setVisibility(View.VISIBLE);
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.pager1,container,false);
-       list_view = (LinearLayout) view.findViewById(R.id.list_view);
+        view = inflater.inflate(R.layout.pager1,container,false);
+
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         String jokeString = prefs.getString("jokes",null);
-        list_view.setVisibility(View.INVISIBLE);
-        list_view.removeAllViews();
         if (jokeString != null){
             Jokes jokes = Utility.handleJokeResponse(jokeString);
             showJokeInfo(jokes);
@@ -128,12 +132,12 @@ public class Fragment1 extends Fragment {
                         srl.setRefreshing(false);
                     }
                 });*/
-
-                list_view.removeAllViews();
                 requetJoke();
                 srl.setRefreshing(false);
             }
         });
+
+
         return view;
     }
 
