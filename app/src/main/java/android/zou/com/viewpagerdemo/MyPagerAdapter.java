@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2017/8/6.
- */
+
 
 public class MyPagerAdapter extends PagerAdapter {
 
@@ -41,3 +41,4 @@ public class MyPagerAdapter extends PagerAdapter {
         container.removeView(pagerlist.get(position));
     }
 }
+ */

@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2017/8/7.
- */
+
 
 public class JokeAdapter extends ArrayAdapter<Joke> {
     public int resourceId;
@@ -35,3 +35,4 @@ public class JokeAdapter extends ArrayAdapter<Joke> {
         }
 
 }
+ */

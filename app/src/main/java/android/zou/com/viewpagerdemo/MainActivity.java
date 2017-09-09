@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Handler;
 
 public class MainActivity extends AppCompatActivity {
-    private MyPagerAdapter myPagerAdapter;
+//    private MyPagerAdapter myPagerAdapter;
     private ViewPager viewPager;
     private View pager1,pager2,pager3;
     private ArrayList<View> pagerList;
@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private  void initFragment(){
         fragment1 = new Fragment1();
-        fragment3 = new Fragment2();
-        fragment2 = new Fragment3();
+        fragment2 = new Fragment2();
+        fragment3 = new Fragment3();
         fragments = new ArrayList<Fragment>();
         fragments.add(fragment1);
         fragments.add(fragment2);

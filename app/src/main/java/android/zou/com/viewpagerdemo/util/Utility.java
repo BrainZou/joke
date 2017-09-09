@@ -2,6 +2,8 @@ package android.zou.com.viewpagerdemo.util;
 
 import android.text.TextUtils;
 import android.zou.com.viewpagerdemo.gson.Joke;
+import android.zou.com.viewpagerdemo.gson.JokeImg;
+import android.zou.com.viewpagerdemo.gson.JokeImgs;
 import android.zou.com.viewpagerdemo.gson.Jokes;
 
 import org.json.JSONArray;
@@ -31,6 +33,27 @@ public class Utility {
                     //joke.save();
                 }
             return jokes;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public static JokeImgs handleJokeImgResponse(String response){
+        if (!TextUtils.isEmpty(response)){
+            try {
+                JokeImgs jokeImgs = new JokeImgs();
+                jokeImgs.jokeimglist = new ArrayList<JokeImg>();
+                JSONArray jsonArray = new JSONArray(response);
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jokeObject = jsonArray.getJSONObject(i);
+                    JokeImg jokeimg = new JokeImg();
+                    jokeimg.setTitle(jokeObject.getString("title"));
+                    jokeimg.setImg(jokeObject.getString("sourceurl"));
+                    jokeImgs.jokeimglist.add(jokeimg);
+                }
+                return jokeImgs;
             } catch (JSONException e) {
                 e.printStackTrace();
             }

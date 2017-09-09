@@ -7,15 +7,34 @@
     android:showDividers="middle"
     android:divider="@drawable/shape"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/joke_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:textIsSelectable="true"
+            android:focusable="true"
+            android:longClickable="true" />
+        <Button
+            android:layout_width="52dp"
+            android:layout_height="36dp"
+            android:text="分享"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/joke_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/joke_content"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        android:textIsSelectable="true"
+        android:focusable="true"
+        android:longClickable="true"/>
 
 
 </LinearLayout>

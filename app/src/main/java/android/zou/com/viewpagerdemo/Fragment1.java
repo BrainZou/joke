@@ -103,35 +103,35 @@ public class Fragment1 extends Fragment {
                              Bundle savedInstanceState) {
        View view = inflater.inflate(R.layout.pager1,container,false);
        list_view = (LinearLayout) view.findViewById(R.id.list_view);
-       // init();
-//        JokeAdapter jokeAdapter = new JokeAdapter(getContext(),R.layout.joke_item,jokelist);
-//        ListView listView = (ListView) view.findViewById(R.id.list_view);
-//        listView.setAdapter(jokeAdapter);
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         String jokeString = prefs.getString("jokes",null);
         list_view.setVisibility(View.INVISIBLE);
-        requetJoke();
-
-//        if (jokeString != "null"){
-//            Jokes jokes = Utility.handleJokeResponse(jokeString);
-//            showJokeInfo(jokes);
-//        }else {
-//            requetJoke();
-//        }
-
+        list_view.removeAllViews();
+        if (jokeString != null){
+            Jokes jokes = Utility.handleJokeResponse(jokeString);
+            showJokeInfo(jokes);
+        }else {
+            requetJoke();
+        }
 
         srl = (SwipeRefreshLayout)view.findViewById(R.id.srl);
         srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 srl.setRefreshing(true);
-                handler  = new android.os.Handler().postDelayed(new Runnable() {
+               /* handler  = new android.os.Handler().post(new Runnable() {
                     @Override
                     public void run() {
+                        list_view.removeAllViews();
                         requetJoke();
                         srl.setRefreshing(false);
                     }
-                },10);
+                });*/
+
+                list_view.removeAllViews();
+                requetJoke();
+                srl.setRefreshing(false);
             }
         });
         return view;
@@ -145,10 +145,16 @@ public class Fragment1 extends Fragment {
 
     private void requetJoke(){
         String url = "http://api.laifudao.com/open/xiaohua.json";
+        //String url = "http://api.laifudao.com/open/tupian.json";
         HttpUtil.sendOkHttpRequest(url, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Toast.makeText(getContext(),"获取信息失败",Toast.LENGTH_SHORT).show();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(),"获取信息失败",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
