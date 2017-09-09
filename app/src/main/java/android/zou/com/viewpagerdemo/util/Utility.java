@@ -50,7 +50,9 @@ public class Utility {
                     JSONObject jokeObject = jsonArray.getJSONObject(i);
                     JokeImg jokeimg = new JokeImg();
                     jokeimg.setTitle(jokeObject.getString("title"));
-                    jokeimg.setImg(jokeObject.getString("sourceurl"));
+                    jokeimg.setImg(jokeObject.getString("thumburl"));
+                    jokeimg.setWidth(Integer.parseInt(jokeObject.getString("width")));
+                    jokeimg.setHeight(Integer.parseInt(jokeObject.getString("height")));
                     jokeImgs.jokeimglist.add(jokeimg);
                 }
                 return jokeImgs;

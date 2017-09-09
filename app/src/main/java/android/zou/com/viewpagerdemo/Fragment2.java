@@ -87,7 +87,8 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.pager2,container,false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        layoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setHasFixedSize(true); //设置item大小固定
+        layoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);//设置三列，垂直
 /*
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -96,6 +97,7 @@ public class Fragment2 extends Fragment {
                 layoutManager.invalidateSpanAssignments();
             }
         });*/
+
 
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);//解决跳到其他列
         recyclerView.setLayoutManager(layoutManager);
